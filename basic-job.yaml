@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tool-job
+spec:
+  #ttlSecondsAfterFinished: 10
+  template:
+    metadata:
+      name: tool-job
+      labels:
+        app: tool
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: tool
+          image: ilcapone/hack-tool:v01
+          command: ["/bin/sh"]
+          args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
+          imagePullPolicy: Always

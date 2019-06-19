@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tool-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: tool-deployment
+      labels:
+        app: tool
+    spec:
+      containers:
+        - name: tool
+          image: ilcapone/hack-tool:v01
+          command: ["/bin/sh"]
+          args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
+          imagePullPolicy: Always
+      nodeSelector:
+        cloud.google.com/gke-nodepool: NOODEPOOL
