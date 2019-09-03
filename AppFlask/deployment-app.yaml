@@ -19,4 +19,4 @@ spec:
         image: ilcapone/vulnerable-app:v02
         env:
         - name: "PORT"
-          value: "3574"
+          value: "5000"
