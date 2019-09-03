@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-app
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+      department: it
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapp
+        department: it
+    spec:
+      containers:
+      - name: flask-app
+        image: ilcapone/vulnerable-app:v01
+        env:
+        - name: "PORT"
+          value: "3574"
