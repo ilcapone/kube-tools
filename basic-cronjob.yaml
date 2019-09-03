@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: tool-cronjob
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: tool-cronjob
+          labels:
+            app: tool
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: tool
+              image: ilcapone/hack-tool:v01
+              command: ["/bin/sh"]
+              args: ["echo 'tool'"]
+              #imagePullPolicy: Always

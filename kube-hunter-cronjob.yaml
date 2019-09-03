@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: security
+  name: kube-hunter-job-default-pool
+spec:
+  schedule: "*/5 * * * *"
+  successfulJobsHistoryLimit: 0
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kube-hunter
+            image: eu.gcr.io/edo-lab-resources/kube-hunter:0.2
+            command: ["python", "kube-hunter-controller.py"]
+            args: ["-cluster", "gke1", "-nodepool", "default-pool", "-project", "edo-lab01"]
+            volumeMounts:
+            - name: kube-hunter
+              mountPath: "/etc/kube-hunter"
+          volumes:
+          - name: kube-hunter
+            secret:
+              secretName: securitycontainer
+              defaultMode: 256
+          restartPolicy: Never
+          nodeSelector:
+            cloud.google.com/gke-nodepool: default-pool
