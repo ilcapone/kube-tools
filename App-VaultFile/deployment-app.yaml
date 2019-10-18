@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-app
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+      department: it
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapp
+        department: it
+    spec:
+      containers:
+      - name: flask-app
+        image: eu.gcr.io/edo-securitylab/vulnapp:v002
+        command: ["python", "app.py"]
+        #command: ["/bin/sh"]
+        #args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
+        env:
+        - name: "PORT"
+          value: "5000"
+        volumeMounts:
+        - name: credentials
+          mountPath: "/etc/credentials"
+      volumes:
+      - name: credentials
+        secret:
+          secretName: vulnapp
+          defaultMode: 256
+

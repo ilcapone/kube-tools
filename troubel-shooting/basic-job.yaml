@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: tool
-          image: ilcapone/hack-tool:v01
+          image: ilcapone/hack-tool:v02
           command: ["/bin/sh"]
           args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
           imagePullPolicy: Always
