@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: eu.gcr.io/edo-securitylab/vulnapp:v0008
+        image: registry/vulnapp:v0008
         command: ["python", "app.py"]
         args: ["-user", "vulnuser", "-pass", "agherqg"]
         env:

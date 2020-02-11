@@ -12,9 +12,9 @@ spec:
         spec:
           containers:
           - name: kube-hunter
-            image: eu.gcr.io/edo-lab-resources/kube-hunter:0.2
+            image: kube-hunter:0.2
             command: ["python", "kube-hunter-controller.py"]
-            args: ["-cluster", "gke1", "-nodepool", "default-pool", "-project", "edo-lab01"]
+            args: ["-cluster", "cluster-name", "-nodepool", "nodepool-name", "-project", "project-name"]
             volumeMounts:
             - name: kube-hunter
               mountPath: "/etc/kube-hunter"

@@ -21,7 +21,7 @@ def ls():
 
 @app.route('/bionicvanilla')
 def vanilla():
-    mongo_client = Mongo_c('10.156.15.240')
+    mongo_client = Mongo_c('192.168.1.1')
     db = mongo_client.client.vulndb
     collection = db.list_collection_names()
     out = ''
@@ -49,8 +49,8 @@ class Mongo_c:
 
 class Bucket:
   def __init__ (self):
-    self.project_id = 'edo-securitylab'
-    self.bucket_name = 'vaulttestsec'
+    self.project_id = 'project-id'
+    self.bucket_name = 'buckt-name'
     self.source_blob_name = 'birth'
 
   def download_as_string(self):

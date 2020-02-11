@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: eu.gcr.io/edo-securitylab/vulnapp:v002
+        image: registry/vulnapp:v002
         command: ["python", "app.py"]
         #command: ["/bin/sh"]
         #args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
