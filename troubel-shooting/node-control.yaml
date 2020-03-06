@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tool
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: tool
+      labels:
+        app: tool
+    spec:
+      securityContext:
+        fsGroup: 412
+      containers:
+        - name: tool
+          image: ilcapone/hack-tool:v03
+          command: ["/bin/sh"]
+          args: ["-c", "while true; sleep 10; do echo 'gas'; done"]
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: dockersock
+              mountPath: "/var/run/docker.sock"
+      volumes:
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
