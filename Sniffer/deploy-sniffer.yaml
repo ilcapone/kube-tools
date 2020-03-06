@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: topo
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: tool
+        app: tool
+    spec:
+      # Needed to attach to Host network
+      hostNetwork: true
+      containers:
+        - name: tool
+          image: ilcapone/hack-tool:v0.4
+          command: ["/bin/sh"]
+          args: ["-c", "while true; sleep 10; do echo 'gas'; done"]
+          securityContext:
+            privileged: true
+            #readOnlyRootFilesystem: true
+            capabilities:
+              add: ["CAP_NET_ADMIN"]
+          env:
+            - name: IFACE 
+              value: "any"
+            - name: PCAP_FILTER 
+              value: "ip"
+            - name: SOCAT_HOST 
+              value: "nids-01"
+            - name: SOCAT_PORT 
+              value: "58888"
+            # Enable SNAPLENGHT if you are injecting the traffic to an interface
+            - name: SNAPLENGHT
+              value: "0"
