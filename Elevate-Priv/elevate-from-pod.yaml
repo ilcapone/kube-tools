@@ -1,0 +1,16 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tool
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: tool
+    spec:
+      containers:
+      - name: tool
+        image: ilcapone/hack-tool:v02
+        command: ["/bin/sh"]
+        args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
