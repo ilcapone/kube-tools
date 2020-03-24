@@ -1,6 +1,9 @@
 FROM ubuntu
 RUN apt-get update && apt-get -y upgrade &&  apt-get install -y build-essential
 RUN apt-get install -y alien
+RUN curl https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-basic-19.6.0.0.0-1.x86_64.rpm -o oracle-instantclient-basic.rpm
+RUN curl https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-sqlplus-19.6.0.0.0-1.x86_64.rpm -o oracle-instantclient-sqlplus.rpm
+RUN curl https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-devel-19.6.0.0.0-1.x86_64.rpm -o oracle-instantclient-devel.rpm
 RUN alien -i oracle-instantclient-basic*.rpm
 RUN alien -i oracle-instantclient-sqlplus*.rpm
 RUN alien -i oracle-instantclient-devel*.rpm
