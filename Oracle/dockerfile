@@ -8,6 +8,6 @@ RUN alien -i oracle-instantclient-basic*.rpm
 RUN alien -i oracle-instantclient-sqlplus*.rpm
 RUN alien -i oracle-instantclient-devel*.rpm
 RUN apt-get install -y libaio1
-RUN sensible-editor /etc/ld.so.conf.d/oracle.conf
+#RUN sensible-editor /etc/ld.so.conf.d/oracle.conf
 RUN ldconfig
 CMD ["bash"]
