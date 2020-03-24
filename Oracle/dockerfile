@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get update && apt-get -y upgrade &&  apt-get install -y build-essential
-RUN apt-get install alie
+RUN apt-get install alien
 RUN alien -i oracle-instantclient-basic*.rpm
 RUN alien -i oracle-instantclient-sqlplus*.rpm
 RUN alien -i oracle-instantclient-devel*.rpm
