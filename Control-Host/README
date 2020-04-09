@@ -1,0 +1,1 @@
+execute inside the POD: chroot /host/ bash
