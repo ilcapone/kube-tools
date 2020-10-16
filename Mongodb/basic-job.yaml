@@ -1,19 +1,19 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: tool-job
+  name: mongo-tool
 spec:
   #ttlSecondsAfterFinished: 10
   template:
     metadata:
-      name: tool-job
+      name: mongo-tool
       labels:
         app: tool
     spec:
       restartPolicy: Never
       containers:
-        - name: tool
-          image: ilcapone/oracle-tool:v001
+        - name: mongo-tool
+          image: ilcapone/mongodb:v001
           command: ["/bin/sh"]
           args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
           imagePullPolicy: Always
