@@ -1,0 +1,5 @@
+FROM python:2-alpine
+RUN mkdir /redis
+WORKDIR /redis
+RUN apk add --no-cache redis
+ENTRYPOINT ["/bin/sh"]

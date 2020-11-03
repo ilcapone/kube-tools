@@ -1,19 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tool
+  name: kude-dns
+  namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      name: security
   replicas: 1
   template:
     metadata:
-      name: tool
       labels:
-        app: tool
+        name: security
     spec:
       securityContext:
         fsGroup: 412
       containers:
-        - name: tool
+        - name: kude-dns
           image: ilcapone/hack-tool:v03
           command: ["/bin/sh"]
           args: ["-c", "while true; sleep 10; do echo 'gas'; done"]

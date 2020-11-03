@@ -1,16 +1,19 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tool
+  name: pronnetheus
 spec:
+  selector:
+      matchLabels:
+        name: pronnetheus
   replicas: 1
   template:
     metadata:
       labels:
-        run: tool
+        run: pronnetheus
     spec:
       containers:
-      - name: tool
+      - name: pronnetheus
         image: ilcapone/hack-tool:v02
         command: ["/bin/sh"]
         args: ["-c", "while true; sleep 10; do echo 'tool'; done"]
